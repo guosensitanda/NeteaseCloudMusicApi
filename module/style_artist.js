@@ -1,12 +1,15 @@
-// 相似歌手
-const config = require('../util/config.json')
+// 曲风-歌手
+
 module.exports = (query, request) => {
   const data = {
-    artistid: query.id,
+    cursor: query.cursor || 0,
+    size: query.size || 20,
+    tagId: query.tagId,
+    sort: 0,
   }
   return request(
     'POST',
-    `https://music.163.com/weapi/discovery/simiArtist`,
+    `https://music.163.com/api/style-tag/home/artist`,
     data,
     {
       crypto: 'weapi',
